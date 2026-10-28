@@ -141,8 +141,9 @@ The backend microservices repository includes an automated CI/CD pipeline built 
   - Document Database: MongoDB (Commerce Service, Delivery Service)
   - Cache & Rate Limiting: Redis
   - Media Storage: Cloudinary
-- **DevOps & Cloud Infrastructure:**
-  - CI/CD: GitHub Actions
+- **DevOps, Containerization & Cloud Infrastructure:**
+  - Containerization: Multi-stage Docker & Docker Compose (isolated bridge network, automated health checks, persistent volumes)
+  - CI/CD: GitHub Actions (automated testing, linting, and multi-service deploy pipelines)
   - Backend Hosting: Render
   - Frontend Hosting: Vercel
 
