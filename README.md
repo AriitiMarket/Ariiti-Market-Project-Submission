@@ -24,7 +24,7 @@ The project codebase is architectured into three specialized, production-ready r
 
 | Repository | GitHub Link | Description |
 | :--- | :--- | :--- |
-| **Backend Microservices** | [AriitiMarket/backend-micro](https://github.com/AriitiMarket/backend-micro) | Node.js microservices (`identity-service`, `commerce-service`, `delivery-service`) and API Gateway featuring **polyglot persistence** (PostgreSQL + MongoDB), JWT/PKCE authentication, and scoped RBAC. |
+| **Backend Microservices** | [AriitiMarket/backend-micro](https://github.com/AriitiMarket/backend-micro) | Node.js microservices (`identity-service`, `commerce-service`, `delivery-service`), API Gateway, **polyglot persistence** (PostgreSQL + MongoDB), and automated **GitHub Actions CI/CD pipelines**. |
 | **Marketplace Web Frontend** | [AriitiMarket/aritii-seller-buyer-web](https://github.com/AriitiMarket/aritii-seller-buyer-web) | Customer storefront and Seller Center portal (product catalog, dynamic search, cart & checkout, escrow payments, order management). |
 | **Admin & Operations Console** | [AriitiMarket/Aritii-admin-web](https://github.com/AriitiMarket/Aritii-admin-web) | Dedicated management portal for Super Admins and Operations Admins (order monitoring, merchant verification, SLA tracking, disputes). |
 
@@ -107,6 +107,24 @@ Ariiti Market implements a **polyglot persistence model**, selecting the optimal
 
 ---
 
+## 🚀 DevOps: Continuous Integration & Continuous Deployment (CI/CD)
+
+The backend microservices repository features a production-grade automated CI/CD pipeline powered by **GitHub Actions** and **Render Deploy Hooks**:
+
+### 1. Continuous Integration (CI) — `.github/workflows/ci.yml`
+- **Automated Validation:** Triggers on all pushes and pull requests across `main` and feature branches.
+- **Microservices Unit & Integration Tests:** Runs test suites automatically across Node.js 20 runtime environments.
+- **Shared Packages & Architecture Validation:** Validates dependency consistency and architectural boundaries across internal shared libraries (`@aritii/authz`, `@aritii/database`, `@aritii/internal-auth`, `@aritii/service-client`).
+- **Code Quality:** Automated linting, syntax verification, and environment example parity checks.
+
+### 2. Continuous Deployment (CD) — `.github/workflows/deploy.yml` & `cd.yml`
+- **Change Detection:** Automatically filters and identifies precisely which service (`identity-service`, `commerce-service`, `delivery-service`, or `gateway`) received changes.
+- **Automated Deployment Orchestration:** Dispatches deployment triggers to [Render](https://render.com) web services upon successful CI test completion on `main`.
+- **Zero-Downtime Rolling Deploys:** Ensures continuous availability of public APIs and customer traffic.
+- **Automated Health Checks:** Post-deployment status verification against service health endpoints before completing the deployment cycle.
+
+---
+
 ## 🛠️ Technology Stack Summary
 
 - **Frontend Applications:**
@@ -123,9 +141,10 @@ Ariiti Market implements a **polyglot persistence model**, selecting the optimal
   - **Document DB:** MongoDB (Commerce Service, Delivery Service)
   - **Cache & Rate Limiting:** Redis
   - **Media Storage:** Cloudinary
-- **Cloud Infrastructure & Hosting:**
-  - **Backend Services & DBs:** [Render](https://render.com)
-  - **Frontends:** [Vercel](https://vercel.com)
+- **DevOps & Cloud Infrastructure:**
+  - **CI/CD:** GitHub Actions (Automated testing, linting, and multi-service deploy pipelines)
+  - **Backend Hosting:** [Render](https://render.com)
+  - **Frontend Hosting:** [Vercel](https://vercel.com)
 
 ---
 
