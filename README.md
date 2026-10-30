@@ -13,9 +13,7 @@ Ariiti Market connects buyers, local sellers, delivery providers, and platform a
 
 ## Project Demonstration
 
-- **Demonstration Video Links:** See [video/README.md](video/README.md) for full video documentation and chapter outlines.
-- **Main Video Demonstration:** `[INSERT YOUR YOUTUBE OR GOOGLE DRIVE LINK HERE]`
-  > *Note: If sharing via YouTube, set video visibility to **Unlisted**. If using Google Drive, set access to **"Anyone with the link can view"**.*
+- **Demonstration Video:** [video/demo.webm](video/demo.webm)
 
 ---
 
