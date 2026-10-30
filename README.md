@@ -13,7 +13,9 @@ Ariiti Market connects buyers, local sellers, delivery providers, and platform a
 
 ## Project Demonstration
 
-
+- **Demonstration Video Links:** See [video/README.md](video/README.md) for full video documentation and chapter outlines.
+- **Main Video Demonstration:** `[INSERT YOUR YOUTUBE OR GOOGLE DRIVE LINK HERE]`
+  > *Note: If sharing via YouTube, set video visibility to **Unlisted**. If using Google Drive, set access to **"Anyone with the link can view"**.*
 
 ---
 
@@ -97,64 +99,25 @@ Ariiti Market uses a polyglot persistence model, pairing each domain service wit
   - Handles dynamic, nested data structures where products have varied variants, attributes, media, and specifications.
   - Provides fast read and write performance under heavy browsing and checkout traffic.
 
-### 3. Delivery & Logistics Service — MongoDB
-- **Engine:** MongoDB with Mongoose ODM & GeoJSON support
-- **Role:** Delivery location hierarchies, ports, dynamic delivery zones, provider assignment, delivery requests, and live package tracking.
+### 3. Delivery Service — MongoDB & GeoJSON
+- **Engine:** MongoDB with 2dsphere indexing and Turf.js
+- **Role:** Delivery zones, polygons, pricing matrices, hub allocations, and live courier route dispatching.
 - **Design Rationale:**
-  - Provides native geospatial indexing (`2dsphere`) and GeoJSON polygons/coordinates for location mapping and route calculation.
-  - Allows logistics milestones, dispatch events, and provider status tracking to evolve without complex schema migrations.
+  - Leverages geospatial queries (`$geoIntersects`, `$nearSphere`) for sub-city boundaries, coverage areas, and dispatch operations.
 
 ---
 
-## DevOps: Continuous Integration & Continuous Deployment (CI/CD)
+## Key Features & Business Workflows
 
-The backend microservices repository includes an automated CI/CD pipeline built on GitHub Actions and Render deploy hooks:
-
-### 1. Continuous Integration (CI) — `.github/workflows/ci.yml`
-- **Automated Triggering:** Runs on pushes and pull requests across `main` and active development branches.
-- **Automated Test Suites:** Executes unit and integration tests across Node.js 20 runtime environments for `identity-service`, `commerce-service`, and `delivery-service`.
-- **Shared Packages & Architecture Validation:** Verifies dependency consistency and architectural boundaries across internal shared packages (`@aritii/authz`, `@aritii/database`, `@aritii/internal-auth`, `@aritii/service-client`).
-- **Code Quality:** Automated linting, syntax verification, and environment example checks.
-
-### 2. Continuous Deployment (CD) — `.github/workflows/deploy.yml` & `cd.yml`
-- **Path-Based Change Detection:** Identifies which microservice (`identity-service`, `commerce-service`, `delivery-service`, or `gateway`) was updated.
-- **Automated Deployment:** Dispatches deployment triggers to Render web services once CI passes on `main`.
-- **Zero-Downtime Rolling Deploys:** Maintains continuous service availability for client traffic.
-- **Automated Health Checks:** Runs post-deployment status probes against service health endpoints before completing the release.
+- **Buyer Marketplace:** Real-time localized search, multi-category browsing, wishlist management, cart checkout, and live order tracking.
+- **Seller Center:** Self-service registration, shop customization, inventory stock management, and fulfillments.
+- **Delivery Partner Network:** Driver onboarding, batch assignment, route navigation, and instant digital wallet payouts.
+- **Admin Console:** Super Admin and Operations Admin governance, platform settings, disputes, and audit logs.
 
 ---
 
-## Technology Stack Summary
+## Deployment & Live URLs
 
-- **Frontend Applications:**
-  - Framework: React 18, Vite
-  - Languages: JavaScript (ES6+), TypeScript
-  - Styling & Components: Tailwind CSS, Lucide React
-  - Maps & Logistics: Leaflet, OpenStreetMap
-- **Backend & APIs:**
-  - Runtime & Framework: Node.js, Express
-  - Architecture: Microservices coordinated via Central API Gateway
-  - Security: OAuth 2.1 / OIDC code exchange, JWT (Access & Refresh tokens), PKCE (S256), bcrypt hashing, service-to-service internal credentials
-- **Databases & Storage:**
-  - Relational Database: PostgreSQL (Identity Service)
-  - Document Database: MongoDB (Commerce Service, Delivery Service)
-  - Cache & Rate Limiting: Redis
-  - Media Storage: Cloudinary
-- **DevOps, Containerization & Cloud Infrastructure:**
-  - Containerization: Multi-stage Docker & Docker Compose (isolated bridge network, automated health checks, persistent volumes)
-  - CI/CD: GitHub Actions (automated testing, linting, and multi-service deploy pipelines)
-  - Backend Hosting: Render
-  - Frontend Hosting: Vercel
-
----
-
-## Team Members
-
-- **Yihune Belay**
-- **Nedhi Jemal**
-
----
-
-## Submission Notes
-
-This repository acts as the central hub and evaluation index for the Ariiti Market platform submission. Source code repositories remain decoupled to preserve independent build, containerization, and continuous deployment pipelines.
+- **Marketplace Web:** [https://aritiimarketcustomer-web.vercel.app](https://aritiimarketcustomer-web.vercel.app)
+- **Admin Operations:** [https://aritii-admin-web.vercel.app](https://aritii-admin-web.vercel.app)
+- **API Gateway:** [https://aritii-gateway.onrender.com](https://aritii-gateway.onrender.com)
