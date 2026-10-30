@@ -13,7 +13,7 @@ Ariiti Market connects buyers, local sellers, delivery providers, and platform a
 
 ## Project Demonstration
 
-- **Demonstration Video:** [video/demo.webm](video/demo.webm)
+- **Demonstration Video:** [video/demo.webm](https://drive.google.com/file/d/1ZTB8ubeZrzZT9_Ix7M--l6zKlxKkkDSG/view?usp=drivesdk)
 
 ---
 
